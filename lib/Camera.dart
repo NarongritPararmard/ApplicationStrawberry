@@ -1,130 +1,103 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CameraPage extends StatefulWidget {
+  const CameraPage({super.key});
+  
   @override
-  _CameraPageState createState() => _CameraPageState();
+  State<CameraPage> createState() => _HomePageState();
 }
 
-class _CameraPageState extends State<CameraPage> {
-  late CameraController _controller;
-  late Future<void> _initializeControllerFuture;
+class _HomePageState extends State<CameraPage> {
+  File? _pickedImage;
 
   @override
-  void initState() {
-    super.initState();
-    _initializeCamera();
-  }
-
-  Future<void> _initializeCamera() async {
-    // ขออนุญาตการเข้าถึงกล้อง
-    var status = await Permission.camera.request();
-
-    // ตรวจสอบว่าการอนุญาตถูกอนุมัติหรือไม่
-    if (status.isGranted) {
-      // Get a list of available cameras
-      final cameras = await availableCameras();
-
-      // Check if there are any available cameras
-      if (cameras.isEmpty) {
-        print('No cameras available');
-        return;
-      }
-
-      // Create a CameraController
-      _controller = CameraController(cameras[0], ResolutionPreset.high);
-
-      // Initialize the controller
-      _initializeControllerFuture = _controller.initialize();
-    } else if (status.isDenied || status.isPermanentlyDenied) {
-      print('Camera permission not granted. Please enable it in settings.');
-      openAppSettings(); // เปิดการตั้งค่าแอปถ้าถูกปฏิเสธสิทธิ์
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<void>(
-      future: _initializeControllerFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Camera'),
-            ),
-            body: CameraPreview(_controller),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () async {
-                try {
-                  // Ensure that the camera is initialized
-                  await _initializeControllerFuture;
-
-                  // Capture a picture
-                  final image = await _controller.takePicture();
-
-                  // Do something with the captured image
-                  print('Picture saved to: ${image.path}');
-                } catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Error capturing image: $e')),
-                  );
-                }
-              },
-              child: const Icon(Icons.camera_alt),
-            ),
-          );
-        } else {
-          return Center(child: CircularProgressIndicator());
-        }
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-}
-
-void main() {
-  runApp(StrawberryFinderApp());
-}
-
-class StrawberryFinderApp extends StatelessWidget {
-  const StrawberryFinderApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Strawberry Finder',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Screen'),
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        title: const Text(
+          'Image Picker Example',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+          ),
+        )
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CameraPage()),
-            );
-          },
-          child: const Text('Open Camera'),
-        ),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 4,
+            child: _pickedImage == null
+              ? const Center(
+                  child: Text(
+                    'No image selected',
+                    style: TextStyle(fontSize: 20),
+                  ),
+              )
+              : Image.file(_pickedImage!),
+          ),
+          Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CustomButton(
+                      title: 'Camera',
+                      iconData: Icons.camera_alt,
+                      onPressed: () => pickImage(ImageSource.camera),  // ใช้ ImageSource
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: CustomButton(
+                      title: 'Gallery',
+                      iconData: Icons.photo_library,
+                      onPressed: () => pickImage(ImageSource.gallery),  // ใช้ ImageSource
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
+    );
+  }
+
+  Future<void> pickImage(ImageSource source) async {
+    final pickedFile = await ImagePicker().pickImage(source: source);
+
+    if (pickedFile == null) return;
+
+    setState(() {
+      _pickedImage = File(pickedFile.path);
+    });
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final String title;
+  final IconData iconData;
+  final VoidCallback onPressed;
+
+  const CustomButton({
+    Key? key,
+    required this.title,
+    required this.iconData,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(iconData),
+      label: Text(title),
     );
   }
 }

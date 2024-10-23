@@ -113,6 +113,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   camera: ^0.10.6 # ตรวจสอบเวอร์ชันล่าสุด
   permission_handler: ^10.0.0
+  flutter_picker: ^2.1.0
+  image_picker: ^1.1.2
 
 
 

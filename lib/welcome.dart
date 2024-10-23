@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapplication/Camera.dart';
 import 'package:myapplication/dataDetail.dart';
 
 class Welcome extends StatelessWidget {
@@ -311,10 +312,10 @@ class Welcome extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         // ทำการกระทำเมื่อคลิกที่รูปภาพด้านซ้าย
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Welcome()),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => Welcome()),
+                        // );
                       },
                       child: Image.asset(
                         'assets/picture/Screenshot 2567-10-23 at 05.40.39.png 16-17-59-405.png', // เปลี่ยนเป็น path ของรูปภาพด้านซ้าย
@@ -360,7 +361,7 @@ class Welcome extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Welcome()),
+                  MaterialPageRoute(builder: (context) => CameraPage()),
                 );
               },
               child: Container(

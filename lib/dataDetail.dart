@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapplication/Camera.dart';
 import 'package:myapplication/welcome.dart';
 
 class Datadetail extends StatefulWidget {
@@ -215,7 +216,7 @@ class _DatadetailState extends State<Datadetail> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Datadetail()),
+                  MaterialPageRoute(builder: (context) => CameraPage()),
                 );
               },
               child: Container(
