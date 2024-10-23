@@ -152,9 +152,10 @@ class _DatadetailState extends State<Datadetail> {
           // Container ด้านล่าง
           Container(
             alignment: Alignment.bottomCenter,
-            height: 200, // ความสูงของ Container
+            height: 170, // ความสูงของ Container
+            // color: Colors.amber,
             child: Container(
-              padding: EdgeInsets.only(bottom: 25),
+              padding: EdgeInsets.only(bottom: 15),
               height: 130,
               width: 500,
               color: const Color.fromARGB(255, 167, 62, 68),
@@ -172,7 +173,7 @@ class _DatadetailState extends State<Datadetail> {
                         );
                       },
                       child: Image.asset(
-                        'assets/picture/Screenshot 2567-10-23 at 05.40.39.png', // เปลี่ยนเป็น path ของรูปภาพด้านซ้าย
+                        'assets/picture/Screenshot 2567-10-23 at 05.40.39.png 16-17-59-405.png', // เปลี่ยนเป็น path ของรูปภาพด้านซ้าย
                         width: 70,
                         height: 70,
                       ),
@@ -209,7 +210,7 @@ class _DatadetailState extends State<Datadetail> {
           ),
           // วงกลมที่ทับอยู่กลาง
           Positioned(
-            top: 30, // ระยะห่างจากด้านบนของ Stack (ปรับให้ตรงกลาง)
+            bottom: 90, // ระยะห่างจากด้านบนของ Stack (ปรับให้ตรงกลาง)
             child: GestureDetector(
               onTap: () {
                 Navigator.push(

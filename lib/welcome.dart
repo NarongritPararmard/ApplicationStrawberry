@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:myapplication/dataDetail.dart';
-import 'package:myapplication/main.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({super.key});
@@ -66,7 +65,7 @@ class Welcome extends StatelessWidget {
                   // SizedBox(width: 10), // ระยะห่างระหว่างข้อความและรูปภาพ
                   Image.asset(
                     'assets/picture/AppStraw.png', // ใส่ path ของรูปภาพ
-                    width: 145,
+                    width: 135,
                     height: 160,
                   ),
                 ],
@@ -296,10 +295,10 @@ class Welcome extends StatelessWidget {
           // Container ด้านล่าง
           Container(
             alignment: Alignment.bottomCenter,
-            height: 200, // ความสูงของ Container
+            height: 170, // ความสูงของ Container
             // color: Colors.red, // สีพื้นหลังของ Container
             child: Container(
-              padding: EdgeInsets.only(bottom: 25),
+              padding: EdgeInsets.only(bottom: 15),
               height: 130,
               width: 500,
               color: const Color.fromARGB(255, 167, 62, 68),
@@ -318,7 +317,7 @@ class Welcome extends StatelessWidget {
                         );
                       },
                       child: Image.asset(
-                        'assets/picture/Screenshot 2567-10-23 at 05.40.39.png', // เปลี่ยนเป็น path ของรูปภาพด้านซ้าย
+                        'assets/picture/Screenshot 2567-10-23 at 05.40.39.png 16-17-59-405.png', // เปลี่ยนเป็น path ของรูปภาพด้านซ้าย
                         width: 70,
                         height: 70,
                       ),
@@ -356,7 +355,7 @@ class Welcome extends StatelessWidget {
           ),
           // วงกลมที่ทับอยู่กลาง
           Positioned(
-            top: 30, // ระยะห่างจากด้านบนของ Stack (ปรับให้ตรงกลาง)
+            bottom: 90, // ระยะห่างจากด้านบนของ Stack (ปรับให้ตรงกลาง)
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
