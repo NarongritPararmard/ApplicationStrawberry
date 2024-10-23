@@ -18,7 +18,7 @@ class StrawberryFinderApp extends StatelessWidget {
         primarySwatch: Colors.red,
         fontFamily: 'More Sugar',
       ),
-      home: Welcome(),
+      home: HomeScreen(),
     );
   }
 }
