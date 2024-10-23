@@ -78,7 +78,8 @@ class _DatadetailState extends State<Datadetail> {
                 items: <String>[
                   'พันธุ์มอนเทอเรย์',
                   'พันธุ์อะกิฮิเมะ',
-                  'พันธุ์พระราชทาน80'
+                  'พันธุ์พระราชทาน80',
+                  'พันธุ์โคโตะกะ'
                 ].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
