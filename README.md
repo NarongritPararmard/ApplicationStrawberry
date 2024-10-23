@@ -1,2 +1,1 @@
 # ApplicationStrawberry
-# ApplicationStrawberry
