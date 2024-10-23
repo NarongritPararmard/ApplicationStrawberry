@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:myapplication/Camera.dart';
 import 'package:myapplication/tutorial1.dart';
+import 'package:myapplication/welcome.dart';
 
 void main() {
   runApp(StrawberryFinderApp());
@@ -16,7 +18,7 @@ class StrawberryFinderApp extends StatelessWidget {
         primarySwatch: Colors.red,
         fontFamily: 'More Sugar',
       ),
-      home: HomeScreen(),
+      home: Welcome(),
     );
   }
 }

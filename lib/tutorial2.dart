@@ -155,7 +155,7 @@ class Tutorial2 extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 152),
+          SizedBox(height: 122),
           // Navigation Dots
           Container(
             // color: Colors.amber, // สีพื้นหลังของ Container แรก
