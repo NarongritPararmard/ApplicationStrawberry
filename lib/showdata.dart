@@ -51,7 +51,7 @@ Container(
     borderRadius: BorderRadius.circular(40), // Optional: Rounded corners for the border
   ),
   child: Text(
-    'พันธุ์มอนเทอเรย์',
+    'พันธุ์อวายูกิ',
     style: TextStyle(
       fontFamily: 'MiTN',
       fontSize: 30,
