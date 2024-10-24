@@ -1,7 +1,9 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:myapplication/showdata.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({super.key});
@@ -22,11 +24,13 @@ class _HomePageState extends State<CameraPage> {
         title: const Text(
           'Strawberry Finder',
           style: TextStyle(
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.bold,
-            fontSize: 30,
-            color: Colors.white
-          ),
+              fontFamily: 'MiTN',
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+              color: Colors.white,
+              letterSpacing: 2
+              ),
+              
         ),
         backgroundColor: const Color.fromARGB(255, 167, 62, 68),
       ),
@@ -56,6 +60,34 @@ class _HomePageState extends State<CameraPage> {
                       ),
                     ),
                   ),
+          ),
+          
+          Container(
+            height: 60, // Change this value to adjust the height
+            width: 60, // Change this value to adjust the width
+            decoration: BoxDecoration(
+              shape: BoxShape.circle, // Make the button circular
+              color: const Color.fromARGB(
+                  255, 167, 62, 68), // Button background color
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2), // Shadow color
+                  spreadRadius: 2, // Spread radius of the shadow
+                  blurRadius: 5, // Blur radius of the shadow
+                  offset: Offset(0, 3), // Position of the shadow (x, y)
+                ),
+              ],
+            ),
+            child: IconButton(
+              icon: Icon(Icons.search,
+                  size: 30), // Display search icon, adjust size if needed
+              color: Colors.white, // Icon color
+              onPressed: () =>
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Showdata()),
+                )
+            ),
           ),
           Expanded(
             flex: 1,
@@ -118,7 +150,8 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton.icon(
       onPressed: onPressed,
-      icon: Icon(iconData, size: 24, color: Colors.white), // เปลี่ยนสีไอคอนเป็นสีขาว
+      icon: Icon(iconData,
+          size: 24, color: Colors.white), // เปลี่ยนสีไอคอนเป็นสีขาว
       label: Text(
         title,
         style: const TextStyle(

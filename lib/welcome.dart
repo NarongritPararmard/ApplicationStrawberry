@@ -256,7 +256,7 @@ class Welcome extends StatelessWidget {
               margin:
                   EdgeInsets.only(left: 25.0), // กำหนดระยะห่างจากขอบซ้าย 20 px
               width: 500, // กำหนดความกว้างของ Container
-              height: 23, // กำหนดความสูงของ Container
+              height: 27, // กำหนดความสูงของ Container
               child: Text(
                 'เริ่มต้นการจำแนกสายพันธุ์',
                 style: TextStyle(
